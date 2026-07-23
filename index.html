@@ -185,14 +185,14 @@
             position: relative;
         }
         
-        /* 入场动画 - 联系我、首页、教育背景、实习经历、技能栈 */
-        #section-0, #section-1, #section-2, #section-3, #section-6 {
+        /* 入场动画 - 首页、教育背景、实习经历、技能栈、联系我 */
+        #section-0, #section-1, #section-2, #section-6, #section-7 {
             opacity: 0;
             transform: translateY(30px);
             transition: opacity 0.6s ease-out, transform 0.6s ease-out;
         }
         
-        #section-0.visible, #section-1.visible, #section-2.visible, #section-3.visible, #section-6.visible {
+        #section-0.visible, #section-1.visible, #section-2.visible, #section-6.visible, #section-7.visible {
             opacity: 1;
             transform: translateY(0);
         }
@@ -233,21 +233,21 @@
         #section-2.visible .exp-card:nth-child(2) { animation-delay: 0.4s; }
         
         /* 技能栈 - 标题和四个卡片依次淡入 */
-        #section-5.visible .section-header {
+        #section-6.visible .section-header {
             opacity: 0;
             animation: fadeInUp 0.5s ease-out forwards;
         }
-        #section-5.visible .skill-card {
+        #section-6.visible .skill-card {
             opacity: 0;
             animation: fadeInUp 0.5s ease-out forwards;
         }
-        #section-5.visible .skill-card:nth-child(1) { animation-delay: 0.2s; }
-        #section-5.visible .skill-card:nth-child(2) { animation-delay: 0.3s; }
-        #section-5.visible .skill-card:nth-child(3) { animation-delay: 0.4s; }
-        #section-5.visible .skill-card:nth-child(4) { animation-delay: 0.5s; }
+        #section-6.visible .skill-card:nth-child(1) { animation-delay: 0.2s; }
+        #section-6.visible .skill-card:nth-child(2) { animation-delay: 0.3s; }
+        #section-6.visible .skill-card:nth-child(3) { animation-delay: 0.4s; }
+        #section-6.visible .skill-card:nth-child(4) { animation-delay: 0.5s; }
         
         /* 联系我内部动画 */
-        #section-6.visible .contact-content {
+        #section-7.visible .contact-content {
             animation: fadeInUp 0.5s ease-out 0.2s forwards;
             opacity: 0;
         }
@@ -447,12 +447,15 @@
         }
         
         .hero-tag {
+            display: inline-flex;
+            color: inherit;
+            text-decoration: none;
             font-size: 14px;
             padding: 10px 20px;
             border: 1px solid rgba(0,0,0,0.15);
             border-radius: var(--radius-pill);
             transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-            cursor: default;
+            cursor: pointer;
         }
         
         .hero-tag:hover {
@@ -771,6 +774,7 @@
             flex-direction: column;
             gap: 48px;
         }
+
         
         .project-item {
             display: grid;
@@ -779,6 +783,43 @@
             align-items: start;
             padding: 32px 0;
             border-bottom: 1px solid var(--color-border);
+            scroll-margin-top: 96px;
+        }
+
+        .project-index {
+            margin-top: 18px;
+            padding-top: 18px;
+            border-top: 1px solid var(--color-border);
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .project-index-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            color: var(--color-pale-stone);
+            text-decoration: none;
+            font-size: 13px;
+            line-height: 1.4;
+            padding: 6px 0;
+            transition: color 160ms ease-out;
+        }
+
+        .project-index-link::after {
+            content: '·';
+            color: var(--color-faint);
+            margin-left: 10px;
+        }
+
+        .project-index-link:last-child::after {
+            content: '';
+            margin: 0;
+        }
+
+        .project-index-link:hover {
+            color: var(--color-accent);
         }
         
         .project-item:last-child {
@@ -793,7 +834,7 @@
             border-color: var(--color-accent);
             box-shadow: 0 12px 40px rgba(255, 107, 53, 0.12);
         }
-        
+
         .project-info {
             padding-right: 24px;
         }
@@ -802,6 +843,12 @@
             font-family: var(--font-serif);
             font-size: 24px;
             font-weight: 400;
+            margin-bottom: 8px;
+        }
+
+        .project-meta {
+            font-size: 13px;
+            color: var(--color-faint);
             margin-bottom: 12px;
         }
         
@@ -833,6 +880,60 @@
             margin-bottom: 16px;
         }
         
+        .project-detail {
+            margin-top: 18px;
+            border-top: 1px solid var(--color-border);
+            padding-top: 16px;
+        }
+
+        .project-detail summary {
+            cursor: pointer;
+            font-size: 14px;
+            color: var(--color-ink);
+            font-weight: 500;
+            list-style: none;
+        }
+
+        .project-detail summary::marker,
+        .project-detail summary::-webkit-details-marker {
+            display: none;
+        }
+
+        .project-detail summary::after {
+            content: '+';
+            float: right;
+            color: var(--color-accent);
+        }
+
+        .project-detail[open] summary::after {
+            content: '-';
+        }
+
+        .project-detail-body {
+            margin-top: 16px;
+            display: flex;
+            flex-direction: column;
+            gap: 18px;
+        }
+
+        .detail-block-title {
+            font-size: 13px;
+            color: var(--color-accent);
+            margin-bottom: 6px;
+            font-weight: 600;
+        }
+
+        .detail-block p,
+        .detail-block li {
+            font-size: 14px;
+            color: var(--color-pale-stone);
+            line-height: 1.7;
+        }
+
+        .detail-block ul {
+            padding-left: 18px;
+        }
+
         .project-links {
             display: flex;
             gap: 12px;
@@ -887,6 +988,261 @@
             height: 100%;
             object-fit: contain;
             background: #1a1a1a;
+        }
+
+        .project-visual.carousel-visual {
+            position: relative;
+            overflow: hidden;
+            background: #fff;
+        }
+
+        .screenshot-carousel {
+            height: 100%;
+            display: grid;
+            grid-auto-flow: column;
+            grid-auto-columns: 100%;
+            overflow-x: auto;
+            overflow-y: hidden;
+            scroll-snap-type: x mandatory;
+            scroll-behavior: smooth;
+            scrollbar-width: thin;
+            background: #fff;
+        }
+
+        .screenshot-slide {
+            position: relative;
+            height: 100%;
+            margin: 0;
+            display: flex;
+            align-items: flex-start;
+            justify-content: center;
+            scroll-snap-align: start;
+            overflow-y: auto;
+            overflow-x: hidden;
+            background: #fff;
+        }
+
+        .screenshot-slide img {
+            width: 100%;
+            height: auto;
+            object-fit: initial;
+            display: block;
+        }
+
+        .screenshot-slide-title,
+        .swipe-hint {
+            position: absolute;
+            z-index: 2;
+            padding: 6px 10px;
+            border-radius: var(--radius-pill);
+            font-size: 12px;
+            line-height: 1;
+            backdrop-filter: blur(8px);
+        }
+
+        .screenshot-slide-title {
+            left: 14px;
+            bottom: 14px;
+            background: rgba(0, 0, 0, 0.58);
+            color: #fff;
+        }
+
+        .swipe-hint {
+            right: 14px;
+            top: 14px;
+            background: rgba(255, 255, 255, 0.88);
+            color: var(--color-off-black);
+        }
+
+        .project-visual-schematic {
+            min-height: 100%;
+            padding: 28px;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            color: var(--color-off-black);
+        }
+
+        .schematic-title {
+            font-size: 13px;
+            color: var(--color-faint);
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+
+        .schematic-flow {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .schematic-node {
+            flex: 1 1 120px;
+            min-height: 64px;
+            padding: 12px;
+            border: 1px solid var(--color-border);
+            border-radius: 16px;
+            background: #fff;
+            font-size: 13px;
+            line-height: 1.45;
+        }
+
+        .schematic-node strong {
+            display: block;
+            font-size: 15px;
+            margin-bottom: 4px;
+            color: var(--color-ink);
+        }
+
+        .schematic-metric {
+            margin-top: auto;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+        }
+
+        .schematic-metric div {
+            padding: 12px;
+            border-radius: 14px;
+            background: var(--color-accent-light);
+            color: var(--color-accent);
+            font-size: 13px;
+            text-align: center;
+        }
+
+        .visual-placeholder {
+            min-height: 100%;
+            padding: 28px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            color: var(--color-off-black);
+        }
+
+        .visual-placeholder-title {
+            font-size: 13px;
+            color: var(--color-faint);
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            margin-bottom: 16px;
+        }
+
+        .visual-placeholder-main {
+            border: 1px dashed var(--color-border);
+            border-radius: 18px;
+            padding: 24px;
+            background: rgba(255, 255, 255, 0.55);
+        }
+
+        .visual-placeholder-main strong {
+            display: block;
+            font-size: 16px;
+            color: var(--color-ink);
+            margin-bottom: 8px;
+        }
+
+        .visual-placeholder-main span {
+            display: block;
+            font-size: 13px;
+            color: var(--color-pale-stone);
+            line-height: 1.6;
+        }
+
+        .visual-placeholder-list {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            margin-top: 16px;
+        }
+
+        .visual-placeholder-list div {
+            padding: 10px;
+            border-radius: 14px;
+            background: var(--color-accent-light);
+            color: var(--color-accent);
+            font-size: 12px;
+            text-align: center;
+        }
+
+        /* Campus */
+        .campus-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+
+        .campus-card {
+            background: var(--color-surface);
+            border: 1px solid var(--color-border);
+            border-radius: 24px;
+            padding: 28px;
+            min-height: 220px;
+            display: flex;
+            flex-direction: column;
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .campus-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 32px rgba(0, 0, 0, 0.08);
+        }
+
+        .campus-meta {
+            display: flex;
+            justify-content: space-between;
+            gap: 16px;
+            align-items: baseline;
+            margin-bottom: 16px;
+        }
+
+        .campus-period {
+            font-size: 13px;
+            color: var(--color-faint);
+            white-space: nowrap;
+        }
+
+        .campus-role {
+            font-size: 13px;
+            color: var(--color-accent);
+            background: var(--color-accent-light);
+            padding: 5px 12px;
+            border-radius: var(--radius-pill);
+            white-space: nowrap;
+        }
+
+        .campus-title {
+            font-family: var(--font-serif);
+            font-size: 22px;
+            font-weight: 400;
+            margin-bottom: 14px;
+        }
+
+        .campus-desc {
+            font-size: 14px;
+            line-height: 1.7;
+            color: var(--color-pale-stone);
+        }
+
+        .campus-desc strong {
+            color: var(--color-ink);
+            font-weight: 500;
+        }
+
+        .campus-skills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: auto;
+            padding-top: 18px;
+        }
+
+        .campus-skill {
+            font-size: 12px;
+            color: var(--color-off-black);
+            border: 1px solid var(--color-border);
+            background: rgba(255, 255, 255, 0.55);
+            border-radius: var(--radius-pill);
+            padding: 5px 10px;
         }
         
         /* Skills */
@@ -953,127 +1309,87 @@
             font-size: 18px;
         }
         
-        /* Contact - Terminal Style */
+        /* Contact */
         .contact {
-            background: #0d1117;
-            color: #c9d1d9;
+            background: var(--color-paper);
+            color: var(--color-ink);
             position: relative;
             overflow: hidden;
         }
         
-        .contact::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: 
-                radial-gradient(circle at 20% 50%, rgba(88, 166, 255, 0.03) 0%, transparent 50%),
-                radial-gradient(circle at 80% 80%, rgba(238, 130, 100, 0.03) 0%, transparent 50%);
-            pointer-events: none;
-        }
-        
         .contact .section-title {
-            color: #58a6ff;
+            color: var(--color-ink);
             position: relative;
             z-index: 1;
-            font-family: 'Courier New', monospace;
         }
         
         .contact-content {
             position: relative;
             z-index: 1;
-        }
-        
-        .terminal-window {
-            background: #161b22;
-            border: 1px solid #30363d;
-            border-radius: 12px;
-            overflow: hidden;
-            max-width: 600px;
+            max-width: 760px;
             margin: 0 auto;
+            text-align: center;
         }
-        
-        .terminal-header {
-            background: #21262d;
-            padding: 12px 16px;
+
+        .contact-list {
             display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 14px;
+            border: none;
+        }
+
+        .contact-row {
+            min-width: 210px;
+            padding: 18px 20px;
+            border: 1px solid var(--color-border);
+            border-radius: 18px;
+            background: rgba(255, 255, 255, 0.45);
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
             align-items: center;
-            gap: 8px;
-            border-bottom: 1px solid #30363d;
+            transition: border-color 160ms ease-out, transform 160ms ease-out, background 160ms ease-out;
         }
-        
-        .terminal-dot {
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
+
+        .contact-row:hover {
+            border-color: var(--color-accent);
+            background: var(--color-accent-light);
+            transform: translateY(-2px);
         }
-        
-        .terminal-dot.red { background: #f85149; }
-        .terminal-dot.yellow { background: #f0883e; }
-        .terminal-dot.green { background: #3fb950; }
-        
-        .terminal-title {
-            margin-left: 8px;
-            font-size: 12px;
-            color: #8b949e;
-            font-family: 'Courier New', monospace;
+
+        .contact-label {
+            font-size: 13px;
+            color: var(--color-faint);
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
         }
-        
-        .terminal-body {
-            padding: 20px;
-            font-family: 'Courier New', monospace;
-            font-size: 14px;
-            line-height: 1.8;
-        }
-        
-        .terminal-line {
-            display: flex;
-            gap: 8px;
-            margin-bottom: 8px;
-        }
-        
-        .terminal-prompt {
-            color: #58a6ff;
-        }
-        
-        .terminal-command {
-            color: #c9d1d9;
-        }
-        
-        .terminal-output {
-            color: #8b949e;
-            margin-left: 20px;
-        }
-        
-        .terminal-link {
-            color: #58a6ff;
+
+        .contact-value,
+        .contact-link {
+            font-size: 15px;
+            color: var(--color-ink);
             text-decoration: none;
+            overflow-wrap: anywhere;
+        }
+
+        .contact-link:hover {
+            color: var(--color-accent);
         }
         
-        .terminal-link:hover {
-            text-decoration: underline;
-        }
-        
-        .cursor {
-            display: inline-block;
-            width: 8px;
-            height: 16px;
-            background: #58a6ff;
-            animation: blink 1s step-end infinite;
-            vertical-align: middle;
-            margin-left: 2px;
-        }
-        
-        @keyframes blink {
-            50% { opacity: 0; }
+        .contact-note {
+            margin-top: 28px;
+            font-family: var(--font-serif);
+            font-size: 22px;
+            line-height: 1.5;
+            color: var(--color-ink);
+            text-align: center;
         }
         
         .contact-footer {
-            margin-top: 40px;
+            margin-top: 18px;
             font-size: 12px;
-            color: #8b949e;
+            color: var(--color-faint);
             position: relative;
             z-index: 1;
             text-align: center;
@@ -1093,8 +1409,12 @@
             .exp-metrics { grid-template-columns: 1fr; }
             .project-item { grid-template-columns: 1fr; gap: 24px; }
             .project-visual { height: 200px; }
+            .campus-grid { grid-template-columns: 1fr; }
+            .campus-meta { flex-direction: column; align-items: flex-start; gap: 8px; }
             .skills-grid { grid-template-columns: 1fr; gap: 16px; }
             .contact-links { flex-direction: column; align-items: center; }
+            .contact-list { flex-direction: column; }
+            .contact-row { min-width: 0; width: 100%; }
         }
     </style>
 </head>
@@ -1108,8 +1428,9 @@
                 <a class="nav-link" data-section="2">实习经历</a>
                 <a class="nav-link" data-section="3">项目作品</a>
                 <a class="nav-link" data-section="4">Vibe Coding</a>
-                <a class="nav-link" data-section="5">技能栈</a>
-                <a class="nav-link" data-section="6">联系我</a>
+                <a class="nav-link" data-section="5">校园经历</a>
+                <a class="nav-link" data-section="6">技能栈</a>
+                <a class="nav-link" data-section="7">联系我</a>
             </div>
         </div>
     </nav>
@@ -1120,8 +1441,9 @@
         <div class="nav-dot" data-section="2" data-label="实习经历"></div>
         <div class="nav-dot" data-section="3" data-label="项目作品"></div>
         <div class="nav-dot" data-section="4" data-label="Vibe Coding"></div>
-        <div class="nav-dot" data-section="5" data-label="技能栈"></div>
-        <div class="nav-dot" data-section="6" data-label="联系我"></div>
+        <div class="nav-dot" data-section="5" data-label="校园经历"></div>
+        <div class="nav-dot" data-section="6" data-label="技能栈"></div>
+        <div class="nav-dot" data-section="7" data-label="联系我"></div>
     </div>
 
     <section class="section hero" id="section-0">
@@ -1166,10 +1488,10 @@
                 </div>
             </div>
             <div class="hero-tags">
-                <span class="hero-tag">数据驱动决策</span>
-                <span class="hero-tag">模型落地</span>
-                <span class="hero-tag">AI 工具赋能</span>
-                <span class="hero-tag">0-1 搭建</span>
+                <a class="hero-tag" href="#project-tracking">埋点与指标治理</a>
+                <a class="hero-tag" href="#project-churn">流失与异常识别</a>
+                <a class="hero-tag" href="#project-beattrack">AI 工作流搭建</a>
+                <a class="hero-tag" href="#project-job-radar">信息聚合自动化</a>
             </div>
         </div>
     </section>
@@ -1217,7 +1539,7 @@
                         <div class="edu-highlight-item">湖南省/湖南师范大学优秀毕业生</div>
 						<div class="edu-highlight-item">全国大学生数学建模竞赛省级三等奖</div>
 						<div class="edu-highlight-item">湖南师范大学优秀毕业论文</div>						
-                    </div
+                    </div>
                 </div>
             </div>
         </div>
@@ -1229,13 +1551,59 @@
                 <div class="section-label">02</div>
                 <h2 class="section-title">实习经历</h2>
             </div>
+            
+            <div class="exp-card">
+                <div class="exp-header">
+                    <div class="exp-company">影石创新科技 <span class="exp-product">Insta360</span></div>
+                    <div class="exp-period">2026.05 — 2026.07</div>
+                </div>
+                <div class="exp-role">数据分析（产品运营部）</div>
+                <div class="exp-quote">让数据资产可查、实验结论可信；负责剪辑业务线埋点治理、A/B 实验评估和周会看板支持。</div>
+                <div class="exp-metrics">
+                    <div class="metric">
+                        <div class="metric-value" data-target="85" data-suffix="%">0%</div>
+                        <div class="metric-label">历史埋点资产覆盖</div>
+                    </div>
+                    <div class="metric">
+                        <div class="metric-value" data-target="70" data-suffix="+">0+</div>
+                        <div class="metric-label">统一指标口径</div>
+                    </div>
+                    <div class="metric">
+                        <div class="metric-value" data-target="6.35" data-decimals="2" data-suffix="%">0%</div>
+                        <div class="metric-label">多轨入口导出渗透相对提升</div>
+                    </div>
+                </div>
+                <div class="exp-list">
+                    <div class="exp-block">
+                        <div class="exp-block-title">数据治理</div>
+                        <div class="exp-block-content">设计并搭建埋点元数据管理查询平台，覆盖剪辑业务线 <strong>85%</strong> 历史埋点资产，统一 <strong>70+</strong> 指标口径</div>
+                    </div>
+                    <div class="exp-block">
+                        <div class="exp-block-title">A/B 实验</div>
+                        <div class="exp-block-content">主导多轨仪表盘入口前置实验，导出渗透相对提升 <strong>6.35%</strong>，支持推全决策</div>
+                    </div>
+                    <div class="exp-block">
+                        <div class="exp-block-title">归因分析</div>
+                        <div class="exp-block-content">完成播放器布局改版分析，排除新老用户、CDP 标签等干扰，定位平面多轨精修功能渗透下降源于一键成片分流</div>
+                    </div>
+                    <div class="exp-block">
+                        <div class="exp-block-title">数据看板</div>
+                        <div class="exp-block-content">基于火山引擎沉淀多轨指标数据集，支撑剪辑周会看板搭建与日常取数需求</div>
+                    </div>
+                    <div class="exp-block">
+                        <div class="exp-block-title">Agent 工作流</div>
+                        <div class="exp-block-content">设计埋点治理工作流，拆分需求解析、方案生成、资产检索、规范校验和人工审核节点，辅助生成标准化埋点方案</div>
+                    </div>
+                </div>
+            </div>
+
             <div class="exp-card">
                 <div class="exp-header">
                     <div class="exp-company">万声文化科技 <span class="exp-product">OPPO 音乐 APP</span></div>
                     <div class="exp-period">2025.11 — 2026.04</div>
                 </div>
                 <div class="exp-role">数据产品（数据中台）</div>
-                <div class="exp-quote">把重复的事交给 AI，把思考留给人。</div>
+                <div class="exp-quote">把重复的事交给 AI，把思考留给人；负责音乐 APP 埋点设计及验收、异动分析、数据挖掘、AI 工具及数据产品落地。</div>
                 <div class="exp-metrics">
                     <div class="metric">
                         <div class="metric-value" data-target="85">0%</div>
@@ -1282,25 +1650,25 @@
                 </div>
             </div>
             
-            <div class="exp-card exp-card-secondary">
+            <div class="exp-card exp-card-third">
                 <div class="exp-header">
                     <div class="exp-company">中科天玑数据科技股份有限公司</div>
                     <div class="exp-period">2025.05 — 2025.07</div>
                 </div>
                 <div class="exp-role">数据产品实习生</div>
-                <div class="exp-quote">用 AI 释放重复劳动，用流程消除沟通损耗。</div>
+                <div class="exp-quote">把高重复的信息处理和交付流程拆成可复用工具与 SOP，减少人工打标、客户对接和新人上手中的沟通损耗。</div>
                 <div class="exp-metrics">
                     <div class="metric">
                         <div class="metric-value" data-target="minutes" data-from="3">0人天</div>
                         <div class="metric-label">打标耗时从 3 人天缩减</div>
                     </div>
                     <div class="metric">
-                        <div class="metric-value" data-target="10">0+</div>
-                        <div class="metric-label">主持政企需求研讨会</div>
+                        <div class="metric-value" data-target="5" data-suffix="+">0+</div>
+                        <div class="metric-label">军博会客户对接</div>
                     </div>
                     <div class="metric">
-                        <div class="metric-value" data-target="40">0%</div>
-                        <div class="metric-label">新成员业务上手周期缩短</div>
+                        <div class="metric-value" data-target="6" data-suffix="项">0项</div>
+                        <div class="metric-label">核心 SOP 沉淀</div>
                     </div>
                 </div>
                 <div class="exp-list">
@@ -1314,7 +1682,7 @@
                     </div>
                     <div class="exp-block">
                         <div class="exp-block-title">需求管理</div>
-                        <div class="exp-block-content">主持 <strong>10+ 场</strong>政企需求研讨会&nbsp;&nbsp;|&nbsp;&nbsp;军博会对接 <strong>5 家</strong>客户&nbsp;&nbsp;|&nbsp;&nbsp;转化 <strong>3 家</strong>进入商务洽谈</div>
+                        <div class="exp-block-content">参与政企客户需求梳理与材料准备&nbsp;&nbsp;|&nbsp;&nbsp;军博会对接 <strong>5 家</strong>客户&nbsp;&nbsp;|&nbsp;&nbsp;推动 <strong>3 家</strong>进入商务洽谈</div>
                     </div>
                     <div class="exp-block">
                         <div class="exp-block-title">流程重构</div>
@@ -1330,18 +1698,179 @@
             <div class="section-header">
                 <div class="section-label">03</div>
                 <h2 class="section-title">项目作品</h2>
+                <div class="project-index">
+                    <a class="project-index-link" href="#project-tracking">Insta360 · 埋点治理 / 竞品监控</a>
+                    <a class="project-index-link" href="#project-churn">AllSaints · 流失预测 / 异常识别</a>
+                    <a class="project-index-link" href="#project-beattrack">AllSaints · 埋点工具 / 运营洞察 / 需求流转</a>
+                    <a class="project-index-link" href="#project-ad-agent">个人项目 · 广告归因 Agent</a>
+                </div>
             </div>
             <div class="projects-list">
-                <div class="project-item">
+                <div class="project-item" id="project-tracking">
+                    <div class="project-info">
+                        <div class="project-name">智能埋点方案设计工作流</div>
+                        <div class="project-meta">Insta360 · 2026</div>
+                        <div class="project-tags">
+                            <span class="project-tag">埋点治理</span>
+                            <span class="project-tag">Agent 工作流</span>
+                            <span class="project-tag">事件资产检索</span>
+                            <span class="project-tag">规则校验</span>
+                        </div>
+                        <div class="project-desc">问题：埋点方案要从 PRD 中拆出用户行为、事件、属性和指标口径，人工处理容易漏埋、重复定义事件，也很难复用历史资产。</div>
+                        <div class="project-desc">做法：将流程拆成 Workflow、Agent、Capability、Rule、Data 五层，用状态机管理需求流转，并让需求解析、方案生成、治理校验三个 Agent 分工协作；事件资产查询模块接入历史事件、属性和指标口径，用来减少重复埋点和口径冲突。</div>
+                        <div class="project-result">结果：形成从 PRD 输入、结构化解析、埋点方案生成、规则校验到人工评审的第一版闭环，输出可进入研发对接的埋点方案和验收 checklist。</div>
+                        <details class="project-detail">
+                            <summary>展开项目设计细节</summary>
+                            <div class="project-detail-body">
+                                <div class="detail-block">
+                                    <div class="detail-block-title">背景</div>
+                                    <p>埋点方案设计不是简单写事件名，而是要把 PRD 中的业务目标转成可观测的数据需求。实际工作中，人工设计容易出现历史事件不可复用、同义事件重复定义、字段类型不一致、触发时机描述不清、指标口径无法追溯等问题。</p>
+                                </div>
+
+                                <div class="detail-block">
+                                    <div class="detail-block-title">Workflow Layer</div>
+                                    <p>第一版用简单状态机管理埋点需求单，每个需求单维护一个 workflow_status，覆盖 draft、parsed、generated、validated、reviewing、approved、dev_ready、testing、verified、archived、rejected 等状态。</p>
+                                    <p>节点完成后由系统根据结果推进状态，例如 PRD 解析成功后进入 parsed，方案生成后进入 generated，规则校验完成后进入 validated，存在人工确认问题时进入 reviewing，人工确认通过后进入 approved。</p>
+                                </div>
+
+                                <div class="detail-block">
+                                    <div class="detail-block-title">Agent Layer</div>
+                                    <ul>
+                                        <li><strong>需求解析 Agent：</strong>输入 PRD 文本、功能模块名称、页面信息和业务目标，输出 feature、business_goal、pages、user_actions、metrics 等结构化 JSON；如果缺少关键字段，则标记 need_human_review。</li>
+                                        <li><strong>埋点设计 Agent：</strong>输入需求解析结果、历史事件字典、埋点命名规范和属性规范，生成 event_name、event_desc、trigger_timing、page、properties 等埋点方案。</li>
+                                        <li><strong>治理校验 Agent：</strong>结合新方案、历史事件字典、指标口径库和规则校验结果，识别可能重复事件、口径冲突、触发时机不清等语义风险，并输出修改建议和人工评审标记。</li>
+                                    </ul>
+                                </div>
+
+                                <div class="detail-block">
+                                    <div class="detail-block-title">Capability Layer</div>
+                                    <p>Agent 不直接凭一段 prompt 输出结论，而是调用可复用能力。tracking_schema_skill 负责把 PRD 后的数据需求转成事件、属性和触发时机；event_dictionary_tool 查询历史事件、属性、页面、业务线和版本记录；metric_definition_tool 查询指标口径和配置步骤；duplicate_event_search_tool 检索相似历史事件；rule_validation_tool 执行确定性规则校验；doc_generation_tool 生成研发对接文档和验收 checklist。</p>
+                                </div>
+
+                                <div class="detail-block">
+                                    <div class="detail-block-title">Rule Layer</div>
+                                    <p>规则层不依赖 LLM，负责可确定判断，例如事件名和属性名必须使用 snake_case，属性类型只能是 string、number、boolean、datetime、array、object，核心事件必须包含 user_id、platform、app_version、event_time，点击事件必须有 trigger_timing，同一页面不能重复定义完全相同的 event_name，required 字段不能为空。</p>
+                                </div>
+
+                                <div class="detail-block">
+                                    <div class="detail-block-title">Data Layer</div>
+                                    <p>数据层沉淀 prd_document、tracking_requirement、tracking_event、tracking_property、validation_result、review_record、workflow_instance 等对象。第一版使用 JSON 文件和前端本地状态模拟核心链路，保留后续接入真实数据库和埋点管理平台的扩展空间。</p>
+                                </div>
+
+                                <div class="detail-block">
+                                    <div class="detail-block-title">阶段流转</div>
+                                    <p>整体流程包括 PRD 输入、需求解析、埋点方案生成、规范与治理校验、人工评审、研发对接、测试验收和资产沉淀。每个阶段都有明确输入、执行者、输出和状态变化，避免 Agent 变成单轮文本生成工具。</p>
+                                </div>
+                            </div>
+                        </details>
+                    </div>
+                    <div class="project-visual">
+                        <div class="project-visual-schematic">
+                            <div class="schematic-title">Tracking Governance Workflow</div>
+                            <div class="schematic-flow">
+                                <div class="schematic-node"><strong>01 PRD</strong>录入功能、业务线、页面模块和需求文本</div>
+                                <div class="schematic-node"><strong>02 Parse</strong>抽取业务目标、用户路径、关键行为和指标诉求</div>
+                                <div class="schematic-node"><strong>03 Generate</strong>结合历史事件字典生成事件、属性和触发时机</div>
+                                <div class="schematic-node"><strong>04 Validate</strong>检查命名、字段类型、必填项、重复事件和口径冲突</div>
+                                <div class="schematic-node"><strong>05 Review</strong>产品、数分、研发确认风险和修改建议</div>
+                                <div class="schematic-node"><strong>06 Archive</strong>完成验收后沉淀事件字典、属性字典和评审记录</div>
+                            </div>
+                            <div class="schematic-metric">
+                                <div>状态机流转</div>
+                                <div>Agent 分工</div>
+                                <div>规则校验</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-item" id="project-imaging-monitor">
+                    <div class="project-info">
+                        <div class="project-name">影像行业竞品信息 AI 监控系统</div>
+                        <div class="project-meta">Insta360 · 2026</div>
+                        <div class="project-tags">
+                            <span class="project-tag">竞品分析</span>
+                            <span class="project-tag">AI 摘要</span>
+                            <span class="project-tag">飞书推送</span>
+                            <span class="project-tag">静态看板</span>
+                        </div>
+                        <div class="project-desc">问题：影像行业竞品动态分散在官网、媒体、社区和应用生态中，人工监控容易滞后，也容易被泛科技资讯和重复内容淹没。</div>
+                        <div class="project-desc">做法：搭建低成本监控流水线，用配置化信源采集候选内容，先通过品牌词和影像锚点词降噪，再用 AI 抽取中文摘要、威胁等级、战略洞察和证据链接，并用跨运行记忆避免重复推送。</div>
+                        <div class="project-result">结果：沉淀飞书卡片推送、静态看板、竞品战卡、证据链回溯和 AI 降级兜底，让产品与运营同学能快速扫到高价值竞品动态。</div>
+                    </div>
+                    <div class="project-visual carousel-visual">
+                        <div class="swipe-hint">左右滑动，图内上下滚动</div>
+                        <div class="screenshot-carousel" aria-label="影像行业竞品信息 AI 监控系统截图">
+                            <figure class="screenshot-slide">
+                                <img src="assets/imaging-monitor/overview.png" alt="影像行业竞品监控看板总览">
+                                <figcaption class="screenshot-slide-title">总览</figcaption>
+                            </figure>
+                            <figure class="screenshot-slide">
+                                <img src="assets/imaging-monitor/key-events.png" alt="影像行业竞品重点动态列表">
+                                <figcaption class="screenshot-slide-title">重点动态</figcaption>
+                            </figure>
+                            <figure class="screenshot-slide">
+                                <img src="assets/imaging-monitor/battlecards.png" alt="影像行业竞品战卡">
+                                <figcaption class="screenshot-slide-title">竞品战卡</figcaption>
+                            </figure>
+                            <figure class="screenshot-slide">
+                                <img src="assets/imaging-monitor/hardware.png" alt="影像行业硬件动态监控">
+                                <figcaption class="screenshot-slide-title">硬件动态</figcaption>
+                            </figure>
+                            <figure class="screenshot-slide">
+                                <img src="assets/imaging-monitor/feishu-card.jpg" alt="飞书竞品动态推送卡片">
+                                <figcaption class="screenshot-slide-title">飞书卡片</figcaption>
+                            </figure>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-item" id="project-churn">
+                    <div class="project-info">
+                        <div class="project-name">音乐 APP 用户流失预测</div>
+                        <div class="project-meta">AllSaints · 2025 - 2026</div>
+                        <div class="project-tags">
+                            <span class="project-tag">流失预测</span>
+                            <span class="project-tag">特征工程</span>
+                            <span class="project-tag">模型解释</span>
+                            <span class="project-tag">运营分层</span>
+                        </div>
+                        <div class="project-desc">问题：精细化运营需要提前识别高风险流失用户，但误判过多会浪费触达资源，也可能打扰正常用户。</div>
+                        <div class="project-desc">做法：基于 5 万条音乐 APP 用户行为数据，排除活跃度、最后活跃天数等标签泄漏变量，围绕播放、启动、内容互动和用户属性构建候选特征；用 SHAP 解释特征重要性，并比较 5 特征与 14 特征建模方案。</div>
+                        <div class="project-result">结果：14 特征方案 AUC <strong>0.849</strong>、流失 F1 <strong>0.687</strong>；双阈值策略将用户分为高风险、待观察、低风险三类，高风险流失精确率 <strong>70.3%</strong>。业务发现：高播歌量强烈抑制流失，行为稳定性比短期增长更关键。</div>
+                    </div>
+                    <div class="project-visual carousel-visual">
+                        <div class="swipe-hint">左右滑动</div>
+                        <div class="screenshot-carousel" aria-label="音乐 APP 用户流失预测项目图表">
+                            <figure class="screenshot-slide">
+                                <img src="assets/churn-prediction/churn-feature-importance.png" alt="音乐 APP 用户流失预测关键特征 SHAP 排序图">
+                                <figcaption class="screenshot-slide-title">特征解释</figcaption>
+                            </figure>
+                            <figure class="screenshot-slide">
+                                <img src="assets/churn-prediction/churn-model-comparison.png" alt="音乐 APP 用户流失预测 5 特征与 14 特征模型方案对比">
+                                <figcaption class="screenshot-slide-title">模型对比</figcaption>
+                            </figure>
+                            <figure class="screenshot-slide">
+                                <img src="assets/churn-prediction/churn-dual-threshold.png" alt="音乐 APP 用户流失预测双阈值运营分层图">
+                                <figcaption class="screenshot-slide-title">运营分层</figcaption>
+                            </figure>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-item" id="project-anomaly">
                     <div class="project-info">
                         <div class="project-name">音乐APP刷量用户识别</div>
+                        <div class="project-meta">AllSaints · 2025 - 2026</div>
                         <div class="project-tags">
-                            <span class="project-tag">Isolation Forest</span>
-                            <span class="project-tag">风控</span>
+                            <span class="project-tag">异常识别</span>
+                            <span class="project-tag">行为特征</span>
+                            <span class="project-tag">风控规则</span>
+                            <span class="project-tag">抽检评估</span>
                         </div>
-                        <div class="project-desc">刷量用户导致 DAU、播放量等数据失真。</div>
-                        <div class="project-desc">构建启动间隔、歌曲重复度等 18 维特征，采用孤立森林模型粗筛 + 业务规则精筛两阶段识别方案。</div>
-                        <div class="project-result">500+ 样本抽检准确率 85%+，刷量账号周环比下降 37%</div>
+                        <div class="project-desc">问题：刷量用户会抬高 DAU、播放量等核心指标，导致内容表现、活动效果和运营判断失真。</div>
+                        <div class="project-desc">做法：围绕启动间隔、歌曲重复度、播放节奏等行为构建 18 维特征，采用孤立森林模型粗筛，再叠加业务规则做精筛和人工抽检。</div>
+                        <div class="project-result">结果：500+ 样本抽检准确率 85%+，刷量账号周环比下降 37%，为后续风控规则和指标解释提供依据。</div>
 						<div class="project-links">
                             <a href="https://github.com/Jasmine-Liu-min/MusicStreamingAnomalyDetection" target="_blank" class="project-link">
                                 <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
@@ -1353,38 +1882,20 @@
                         <video src="assets/异常用户识别展示.mp4" controls></video>
                     </div>
                 </div>
-                
-                <div class="project-item">
-                    <div class="project-info">
-                        <div class="project-name">客诉洞察平台</div>
-                        <div class="project-tags">
-                            <span class="project-tag">jieba</span>
-                        </div>
-                        <div class="project-desc">月均客诉 1000 条+，产运手动分类效率低。</div>
-                        <div class="project-desc">基于 jieba 分词与双重加权匹配规则实现自动细粒度归因，搭建含同比环比、趋势追踪、词云等看板。</div>
-                        <div class="project-result">处理效率从日 300 条缩至小时全量处理，效率提升 2400%+</div>
-                        <div class="project-links">
-                            <a href="https://github.com/Jasmine-Liu-min/complaint-insight" target="_blank" class="project-link">
-                                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
-                                GitHub
-                            </a>
-                        </div>						
-                    </div>
-                    <div class="project-visual">
-                        <video src="assets/客诉展示.mp4" controls></video>
-                    </div>
-                </div>
-                
-                <div class="project-item">
+
+                <div class="project-item" id="project-beattrack">
                     <div class="project-info">
                         <div class="project-name">BeatTrack 埋点设计 AI 工具</div>
+                        <div class="project-meta">AllSaints · 2025 - 2026</div>
                         <div class="project-tags">
-                            <span class="project-tag">Reflection Agent</span>
-                            <span class="project-tag">LLM</span>
+                            <span class="project-tag">埋点设计</span>
+                            <span class="project-tag">AI 审查</span>
+                            <span class="project-tag">JSON 容错</span>
+                            <span class="project-tag">断点续跑</span>
                         </div>
-                        <div class="project-desc">埋点设计流程冗长，多方对齐耗时久。</div>
-                        <div class="project-desc">参考 Harness 理念拆分为需求分析、指标设计、方案生成三阶段，加独立审查 Agent，做 Json 容错解析和断点续跑机制。</div>
-                        <div class="project-result">单次埋点设计耗时从 90min+ 缩至 30min 以内，效率提升 200%+</div>
+                        <div class="project-desc">问题：音乐 APP 埋点设计需要反复对齐需求、指标和字段，人工写方案容易遗漏触发时机、属性类型和验收口径。</div>
+                        <div class="project-desc">做法：参考 Harness 理念，将流程拆成需求分析、指标设计、方案生成三阶段，并加入独立审查 Agent；工程侧补充 JSON 容错解析和断点续跑机制，避免一次生成失败就重来。</div>
+                        <div class="project-result">结果：单次埋点设计耗时从 90min+ 缩至 30min 以内，效率提升 200%+，输出更适合研发对接的标准化埋点方案。</div>
                         <div class="project-links">
                             <a href="https://github.com/Jasmine-Liu-min/BeatTrack-skill" target="_blank" class="project-link">
                                 <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
@@ -1396,39 +1907,45 @@
                         <img src="assets/beattrack展示.png" alt="BeatTrack 埋点设计 AI 工具">
                     </div>
                 </div>
-                
-                <div class="project-item">
+
+                <div class="project-item" id="project-complaint">
                     <div class="project-info">
-                        <div class="project-name">广告收入归因诊断 Agent</div>
+                        <div class="project-name">客诉洞察平台</div>
+                        <div class="project-meta">AllSaints · 2025 - 2026</div>
                         <div class="project-tags">
-                            <span class="project-tag">ReAct</span>
-                            <span class="project-tag">LLM Agent</span>
+                            <span class="project-tag">客诉归因</span>
+                            <span class="project-tag">文本分类</span>
+                            <span class="project-tag">运营看板</span>
+                            <span class="project-tag">词云分析</span>
                         </div>
-                        <div class="project-desc">广告收入异动依赖人工多报表逐层拆解，耗时 60min+。</div>
-                        <div class="project-desc">基于 ReAct 框架驱动 Agent 自主选择工具逐层下钻，设计摘要压缩与对话记忆持久化。</div>
-                        <div class="project-result">排查耗时压缩至秒级</div>
-						<div class="project-links">
-                            <a href="https://github.com/Jasmine-Liu-min/AdDiagnosisAgent" target="_blank" class="project-link">
+                        <div class="project-desc">问题：月均客诉 1000 条+，产运同学需要手动归类问题类型，效率低，也难以及时判断哪些问题正在变严重。</div>
+                        <div class="project-desc">做法：基于 jieba 分词与双重加权匹配规则做细粒度归因，按功能、场景和问题类型沉淀标签，并搭建同比环比、趋势追踪和词云看板。</div>
+                        <div class="project-result">结果：处理效率从日 300 条缩至小时级全量处理，效率提升 2400%+，帮助产运更快定位高频客诉和异常波动。</div>
+                        <div class="project-links">
+                            <a href="https://github.com/Jasmine-Liu-min/complaint-insight" target="_blank" class="project-link">
                                 <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
                                 GitHub
                             </a>
-                        </div>
+                        </div>						
                     </div>
                     <div class="project-visual">
-                        <video src="assets/广告agent展示.mp4" controls></video>
+                        <video src="assets/客诉展示.mp4" controls></video>
                     </div>
                 </div>
 
-                <div class="project-item">
+                <div class="project-item" id="project-feishu">
                     <div class="project-info">
                         <div class="project-name">数据需求小型飞书工单系统</div>
+                        <div class="project-meta">AllSaints · 2025 - 2026</div>
                         <div class="project-tags">
-                            <span class="project-tag">飞书</span>
-                            <span class="project-tag">工单系统</span>
+                            <span class="project-tag">需求收口</span>
+                            <span class="project-tag">飞书机器人</span>
+                            <span class="project-tag">多维表格</span>
+                            <span class="project-tag">状态流转</span>
                         </div>
-                        <div class="project-desc">数据组日常承接大量零散需求，来源分散，信息缺失率高、进度不可见、易遗漏。</div>
-                        <div class="project-desc">基于飞书机器人+多维表格搭建轻量化工单系统，设计结构化卡片收集需求，实现自动写入多维表格、自动通知、状态流转可视。</div>
-                        <div class="project-result">数据部门信息完整率<strong>提升112%</strong>，减少反复沟通，工单状态可视可追踪；业务部门统一入口提交，响应时效从不确定缩短至0.5个工作日内；需求遗漏率降至接近0%，零成本本地部署。</div>
+                        <div class="project-desc">问题：数据组日常承接大量零散需求，入口分散、字段缺失、进度不可见，容易反复沟通或遗漏需求。</div>
+                        <div class="project-desc">做法：基于飞书机器人和多维表格搭建轻量化工单系统，用结构化卡片收集需求，自动写入多维表格，并通过状态字段、通知和责任人记录实现流转可视。</div>
+                        <div class="project-result">结果：数据部门信息完整率<strong>提升112%</strong>，业务统一入口提交，响应时效从不确定缩短至0.5个工作日内，需求遗漏率降至接近0%。</div>
                         <div class="project-links">
                             <a href="https://github.com/Jasmine-Liu-min/FeishuDataBot" target="_blank" class="project-link">
                                 <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
@@ -1440,7 +1957,31 @@
                         <img src="assets/飞书.jpg" alt="数据需求小型飞书工单系统">
                     </div>
                 </div>
-				
+
+                <div class="project-item" id="project-ad-agent">
+                    <div class="project-info">
+                        <div class="project-name">广告收入归因诊断 Agent</div>
+                        <div class="project-meta">个人项目 · 2026</div>
+                        <div class="project-tags">
+                            <span class="project-tag">归因诊断</span>
+                            <span class="project-tag">ReAct Agent</span>
+                            <span class="project-tag">工具调用</span>
+                            <span class="project-tag">对话记忆</span>
+                        </div>
+                        <div class="project-desc">问题：广告收入异动通常要在多个报表之间逐层拆解，人工排查耗时 60min+，也容易漏掉维度组合和历史对比。</div>
+                        <div class="project-desc">做法：基于 ReAct 框架让 Agent 自主选择工具逐层下钻，按媒体、广告位、地区、时间等维度拆解异常，并设计摘要压缩和对话记忆持久化，避免长链路推理丢上下文。</div>
+                        <div class="project-result">结果：将一次异动排查从人工多表切换压缩到秒级诊断，输出可追溯的原因链路和后续检查方向。</div>
+						<div class="project-links">
+                            <a href="https://github.com/Jasmine-Liu-min/AdDiagnosisAgent" target="_blank" class="project-link">
+                                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+                                GitHub
+                            </a>
+                        </div>
+                    </div>
+                    <div class="project-visual">
+                        <video src="assets/广告agent展示.mp4" controls></video>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -1452,13 +1993,75 @@
                 <h2 class="section-title">Vibe Coding</h2>
             </div>
             <div class="projects-list">
+                <div class="project-item" id="project-job-radar">
+                    <div class="project-info">
+                        <div class="project-name">Job Radar 27届招聘信息台</div>
+                        <div class="project-tags">
+                            <span class="project-tag">招聘信息聚合</span>
+                            <span class="project-tag">机会筛选</span>
+                            <span class="project-tag">自动化推送</span>
+                            <span class="project-tag">投递看板</span>
+                        </div>
+                        <div class="project-desc">27届求职信息分散在官网、国聘、央国企公告、高校就业网、牛客、公众号和就业群里，人工刷信息容易漏掉短截止岗位，也很难判断机会结构是否偏离主攻方向。</div>
+                        <div class="project-desc">构建个人招聘信息台：配置化接入多类信源，经过归一化、跨源去重、方向标签、质量降噪和匹配打分后导出单页工作台；牛客、公众号、就业群线索先进入审核台，避免低质信息污染主库。</div>
+                        <div class="project-result">已形成 <strong>信息台 + 27届主线 + 非互联网 + 产品/策略 + 算法/数据 + 投递看板 + 信源健康</strong> 的求职工作台，并通过 GitHub Actions 定时生成新增推送预览和在线页面。</div>
+                        <div class="project-links">
+                            <a href="https://github.com/Jasmine-Liu-min/job-radar" target="_blank" class="project-link">
+                                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+                                GitHub
+                            </a>
+                            <a href="https://jasmine-liu-min.github.io/job-radar/" target="_blank" class="project-link">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+                                在线信息台
+                            </a>
+                        </div>
+                    </div>
+                    <div class="project-visual">
+                        <img src="assets/job-radar.jpg" alt="Job Radar 飞书机器人新增机会推送截图">
+                    </div>
+                </div>
+
+                <div class="project-item">
+                    <div class="project-info">
+                        <div class="project-name">Paper Figure Studio 论文配图工作台</div>
+                        <div class="project-tags">
+                            <span class="project-tag">科研配图</span>
+                            <span class="project-tag">论文导图</span>
+                            <span class="project-tag">架构图生成</span>
+                            <span class="project-tag">可编辑导出</span>
+                        </div>
+                        <div class="project-desc">面向论文阅读、组会汇报和科研项目展示的 AI 配图工作台，解决“内容已经想清楚，但导图、架构图和数据图画不快、改不动、标签容易错”的问题。</div>
+                        <div class="project-desc">产品包含三条核心链路：上传 PDF 或粘贴论文文本后，生成 ChatPaper2Xmind 风格的右展开论文导图；输入方法或项目描述后，生成适合引言和汇报页的全文架构图；输入数据或作图需求后，生成可本地运行的 seaborn/ggplot2 绘图代码和出版级图表。</div>
+                        <div class="project-result">导图支持 PNG/PDF/SVG/Markdown/Mermaid/XMind 导出；架构图采用 SVG + Dagre 分层布局，保证文字标签可编辑、可校正；数据图采用代码生成，避免图片模型编造数值，最终形成可编辑、可复现的科研配图流程。</div>
+                        <div class="project-links">
+                            <a href="https://github.com/Jasmine-Liu-min/paper-figure-studio" target="_blank" class="project-link">
+                                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+                                GitHub
+                            </a>
+                        </div>
+                    </div>
+                    <div class="project-visual carousel-visual">
+                        <div class="swipe-hint">左右切换，导图可上下滚动</div>
+                        <div class="screenshot-carousel" aria-label="Paper Figure Studio 论文配图工作台产出示例">
+                            <figure class="screenshot-slide">
+                                <img src="assets/paper-figure-studio/architecture.png" alt="Paper Figure Studio 生成的 Transformer 架构图示例">
+                                <figcaption class="screenshot-slide-title">架构图</figcaption>
+                            </figure>
+                            <figure class="screenshot-slide">
+                                <img src="assets/paper-figure-studio/mindmap.png" alt="Paper Figure Studio 生成的 Attention Is All You Need 论文导图示例">
+                                <figcaption class="screenshot-slide-title">论文导图</figcaption>
+                            </figure>
+                        </div>
+                    </div>
+                </div>
+
                 <div class="project-item">
                     <div class="project-info">
                         <div class="project-name">TechDailyPush 科技日报推送</div>
                         <div class="project-tags">
-                            <span class="project-tag">Python</span>
-                            <span class="project-tag">GitHub Actions</span>
-							<span class="project-tag">Automated Workflow</span>
+                            <span class="project-tag">资讯聚合</span>
+                            <span class="project-tag">定时推送</span>
+							<span class="project-tag">零运维自动化</span>
                         </div>
                         <div class="project-desc">针对技术资讯“噪音冗余、信源高度分散”痛点，构建的<strong>轻量化资讯聚合引擎</strong>。</div>
                         <div class="project-desc">底层坚持<strong>纯 Python 标准库</strong>实现，零外部依赖；深度整合 36氪、Product Hunt、Hacker News 等 <strong>7 类中英文核心信源</strong>。利用 GitHub Actions 实现 <strong>定时调度</strong></div>
@@ -1479,9 +2082,9 @@
                     <div class="project-info">
                         <div class="project-name">MysticVerse 西玄占卜</div>
                         <div class="project-tags">
-                            <span class="project-tag">DeepSeek API</span>
-                            <span class="project-tag">Vercel</span>
-							<span class="project-tag">3D Animation</span>
+                            <span class="project-tag">情感陪伴</span>
+                            <span class="project-tag">流式输出</span>
+							<span class="project-tag">3D 翻牌交互</span>
                         </div>
                         <div class="project-desc">探索 <strong>AI 语义理解与玄学逻辑</strong>深度结合的情感陪伴实验性产品。</div>
                         <div class="project-desc">前端实现 78 张韦特牌 <strong>3D 物理翻牌动效</strong>；后端基于 Vercel Serverless 架构，
@@ -1493,14 +2096,13 @@
                     </div>
                 </div>
 				
-            <div class="projects-list">
                 <div class="project-item">
                     <div class="project-info">
                         <div class="project-name">MemoryCard 拾光卡</div>
                         <div class="project-tags">
-                            <span class="project-tag">Python</span>
-                            <span class="project-tag">Streamlit</span>
-							<span class="project-tag">Image Processing</span>
+                            <span class="project-tag">旅行卡片</span>
+                            <span class="project-tag">EXIF 解析</span>
+							<span class="project-tag">图片信息增强</span>
                         </div>
                         <div class="project-desc">翻看旅行相册时，常忘记照片是在哪拍的、那天天气如何。发朋友圈又要反复打字描述，照片本身承载的信息太少。</div>
                         <div class="project-desc">基于 Streamlit 搭建 Web 应用，前端实现<strong>极简上传交互</strong>；后端集成 <strong>ColorThief 六色色卡提取</strong>、<strong>EXIF 元数据解析</strong>、<strong>Open-Meteo 历史天气查询</strong>三大核心能力，输出 <strong>1600px 高分辨率卡片</strong>。</div>
@@ -1516,7 +2118,7 @@
                         <img src="assets/photo_card.jpg" alt="memory card">
                     </div>
                 </div>
-				
+
             </div>
         </div>
     </section>
@@ -1525,6 +2127,72 @@
         <div class="section-inner">
             <div class="section-header">
                 <div class="section-label">05</div>
+                <h2 class="section-title">校园经历</h2>
+            </div>
+            <div class="campus-grid">
+                <article class="campus-card">
+                    <div class="campus-meta">
+                        <span class="campus-period">2024.06 - 2025.06</span>
+                        <span class="campus-role">信息运营</span>
+                    </div>
+                    <h3 class="campus-title">学院就业助理</h3>
+                    <p class="campus-desc">整合招聘信息并维护毕业生就业去向数据，完成<strong>校园宣讲会、双选会</strong>的信息发布、现场组织和后续统计。</p>
+                    <div class="campus-skills">
+                        <span class="campus-skill">信息整合</span>
+                        <span class="campus-skill">数据跟踪</span>
+                        <span class="campus-skill">活动支持</span>
+                    </div>
+                </article>
+
+                <article class="campus-card">
+                    <div class="campus-meta">
+                        <span class="campus-period">2023.09 - 2024.06</span>
+                        <span class="campus-role">活动统筹</span>
+                    </div>
+                    <h3 class="campus-title">党建活动组</h3>
+                    <p class="campus-desc">拆解主题党日、学习研讨、红色观影等活动流程，完成<strong>方案撰写、现场组织与记录整理</strong>，把活动安排落到可执行清单。</p>
+                    <div class="campus-skills">
+                        <span class="campus-skill">流程拆解</span>
+                        <span class="campus-skill">现场协调</span>
+                        <span class="campus-skill">文档沉淀</span>
+                    </div>
+                </article>
+
+                <article class="campus-card">
+                    <div class="campus-meta">
+                        <span class="campus-period">2022.09 - 2023.06</span>
+                        <span class="campus-role">流程规范</span>
+                    </div>
+                    <h3 class="campus-title">院学生社团管理服务中心</h3>
+                    <p class="campus-desc">负责院内社团经费审批、报销审核与财务台账管理，统筹学期社团活动<strong>预算编制与结算</strong>，推动报销流程标准化。</p>
+                    <div class="campus-skills">
+                        <span class="campus-skill">预算管理</span>
+                        <span class="campus-skill">台账维护</span>
+                        <span class="campus-skill">规则意识</span>
+                    </div>
+                </article>
+
+                <article class="campus-card">
+                    <div class="campus-meta">
+                        <span class="campus-period">2022.07 - 2022.08</span>
+                        <span class="campus-role">教学设计</span>
+                    </div>
+                    <h3 class="campus-title">三下乡支教</h3>
+                    <p class="campus-desc">担任教学组组长，统筹课程规划、任务分工、备课试讲与教学复盘；独立承担<strong>四、五年级数学与音乐教学</strong>。</p>
+                    <div class="campus-skills">
+                        <span class="campus-skill">团队分工</span>
+                        <span class="campus-skill">课程设计</span>
+                        <span class="campus-skill">复盘迭代</span>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" id="section-6">
+        <div class="section-inner">
+            <div class="section-header">
+                <div class="section-label">06</div>
                 <h2 class="section-title">技能栈</h2>
             </div>
             
@@ -1569,50 +2237,29 @@
         </div>
     </section>
 
-    <section class="section" id="section-6">
+    <section class="section" id="section-7">
         <div class="section-inner">
             <div class="section-header">
-                <div class="section-label">06</div>
+                <div class="section-label">07</div>
                 <h2 class="section-title">联系我</h2>
             </div>
             <div class="contact-content">
-                <div class="terminal-window">
-                    <div class="terminal-header">
-                        <div class="terminal-dot red"></div>
-                        <div class="terminal-dot yellow"></div>
-                        <div class="terminal-dot green"></div>
-                        <span class="terminal-title">contact.sh</span>
+                <div class="contact-list">
+                    <div class="contact-row">
+                        <div class="contact-label">Email</div>
+                        <a href="mailto:liuyh527@mail2.sysu.edu.cn" class="contact-link">liuyh527@mail2.sysu.edu.cn</a>
                     </div>
-                    <div class="terminal-body">
-                        <div class="terminal-line">
-                            <span class="terminal-prompt">$</span>
-                            <span class="terminal-command">echo $EMAIL</span>
-                        </div>
-                        <div class="terminal-output">
-                            <a href="mailto:liuyh527@mail2.sysu.edu.cn" class="terminal-link">liuyh527@mail2.sysu.edu.cn</a>
-                        </div>
-                        
-                        <div class="terminal-line">
-                            <span class="terminal-prompt">$</span>
-                            <span class="terminal-command">echo $PHONE</span>
-                        </div>
-                        <div class="terminal-output">+86 188-7342-7225</div>
-                        
-                        <div class="terminal-line">
-                            <span class="terminal-prompt">$</span>
-                            <span class="terminal-command">echo $GITHUB</span>
-                        </div>
-                        <div class="terminal-output">
-                            <a href="https://github.com/Jasmine-Liu-min" target="_blank" class="terminal-link">github.com/Jasmine-Liu-min</a>
-                        </div>
-                        
-                        <div class="terminal-line">
-                            <span class="terminal-prompt">$</span>
-                            <span class="cursor"></span>
-                        </div>
+                    <div class="contact-row">
+                        <div class="contact-label">GitHub</div>
+                        <a href="https://github.com/Jasmine-Liu-min" target="_blank" class="contact-link">github.com/Jasmine-Liu-min</a>
+                    </div>
+                    <div class="contact-row">
+                        <div class="contact-label">Phone</div>
+                        <div class="contact-value">+86 188-7342-7225</div>
                     </div>
                 </div>
-                <div class="contact-footer">© 2026 刘语涵 | Built With Passion.</div>
+                <div class="contact-note">谢谢你看到这里。这个页面会继续长大，记录那些从一个想法、一张草稿，慢慢变成小工具和项目的时刻。</div>
+                <div class="contact-footer">© 2026 刘语涵</div>
             </div>
         </div>
     </section>
@@ -1621,13 +2268,57 @@
         const sections = document.querySelectorAll('.section');
         const navDots = document.querySelectorAll('.nav-dot');
         const navLinks = document.querySelectorAll('.nav-link');
+        let currentSectionIndex = 0;
+
+        function setActiveSection(index) {
+            currentSectionIndex = index;
+            navDots.forEach((dot, i) => dot.classList.toggle('active', i === index));
+            navLinks.forEach((link, i) => link.classList.toggle('active', i === index));
+        }
+
+        function getCurrentSectionIndex() {
+            const anchor = window.pageYOffset + window.innerHeight * 0.45;
+            let closestIndex = 0;
+            let closestDistance = Infinity;
+
+            sections.forEach((section, index) => {
+                const top = section.offsetTop;
+                const bottom = top + section.offsetHeight;
+                if (anchor >= top && anchor < bottom) {
+                    closestIndex = index;
+                    closestDistance = 0;
+                    return;
+                }
+
+                const distance = Math.min(Math.abs(anchor - top), Math.abs(anchor - bottom));
+                if (distance < closestDistance) {
+                    closestDistance = distance;
+                    closestIndex = index;
+                }
+            });
+
+            return closestIndex;
+        }
+
+        function scrollToSection(index) {
+            if (index < 0 || index >= sections.length) return;
+            isSnapping = true;
+            wheelDelta = 0;
+            setActiveSection(index);
+            const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+            sections[index].scrollIntoView({ behavior: prefersReducedMotion ? 'auto' : 'smooth' });
+            clearTimeout(snapUnlockTimer);
+            snapUnlockTimer = setTimeout(() => {
+                isSnapping = false;
+                currentSectionIndex = getCurrentSectionIndex();
+            }, 520);
+        }
         
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     const index = Array.from(sections).indexOf(entry.target);
-                    navDots.forEach((dot, i) => dot.classList.toggle('active', i === index));
-                    navLinks.forEach((link, i) => link.classList.toggle('active', i === index));
+                    setActiveSection(index);
                     entry.target.classList.add('visible');
                     
                     if (index === 2) animateMetrics();
@@ -1640,13 +2331,13 @@
         // 点击导航平滑滚动
         navDots.forEach(dot => {
             dot.addEventListener('click', () => {
-                document.getElementById(`section-${dot.dataset.section}`).scrollIntoView({ behavior: 'smooth' });
+                scrollToSection(parseInt(dot.dataset.section, 10));
             });
         });
         
         navLinks.forEach(link => {
             link.addEventListener('click', () => {
-                document.getElementById(`section-${link.dataset.section}`).scrollIntoView({ behavior: 'smooth' });
+                scrollToSection(parseInt(link.dataset.section, 10));
             });
         });
         
@@ -1669,6 +2360,8 @@
                 let current = 0;
                 const duration = 600;
                 const startTime = performance.now();
+                const decimals = parseInt(metric.dataset.decimals || '0', 10);
+                const suffix = metric.dataset.suffix || '%';
                 
                 function update(currentTime) {
                     const elapsed = currentTime - startTime;
@@ -1676,13 +2369,7 @@
                     const easeOut = 1 - Math.pow(1 - progress, 3);
                     current = numTarget * easeOut;
                     
-                    if (target === '10') {
-                        metric.textContent = Math.floor(current) + '+';
-                    } else if (target === '85') {
-                        metric.textContent = Math.floor(current) + '%+';
-                    } else {
-                        metric.textContent = Math.floor(current) + '%';
-                    }
+                    metric.textContent = current.toFixed(decimals) + suffix;
                     
                     if (progress < 1) requestAnimationFrame(update);
                 }
@@ -1692,51 +2379,69 @@
         }
         
         // Section 切换吸附 - 需要足够的滚动量才触发
-        let currentSectionIndex = 0;
         let isSnapping = false;
         let wheelDelta = 0;
-        const SNAP_THRESHOLD = 300; // 需要累计滚动 300 才切换
+        let snapUnlockTimer = null;
+        const SNAP_THRESHOLD = 120;
+        const SNAP_EDGE_BUFFER = 28;
+
+        function canScrollInsideElement(target, direction) {
+            const scrollable = target.closest('.screenshot-slide, .project-visual');
+            if (!scrollable) return false;
+
+            const canScrollVertically = scrollable.scrollHeight > scrollable.clientHeight + 1;
+            if (!canScrollVertically) return false;
+
+            const atTop = scrollable.scrollTop <= 0;
+            const atBottom = scrollable.scrollTop + scrollable.clientHeight >= scrollable.scrollHeight - 1;
+            return direction > 0 ? !atBottom : !atTop;
+        }
         
         window.addEventListener('wheel', (e) => {
-            if (isSnapping) return;
-            
-            // 如果滚动的是可滚动元素（如图片容器），不触发吸附
-            const target = e.target;
-            const scrollableParent = target.closest('.project-visual, [style*="overflow-y: auto"], [style*="overflow-y:auto"]');
-            if (scrollableParent) return;
-            
             const direction = e.deltaY > 0 ? 1 : -1;
-            wheelDelta += Math.abs(e.deltaY);
+
+            if (isSnapping) {
+                e.preventDefault();
+                return;
+            }
+
+            if (Math.abs(e.deltaX) > Math.abs(e.deltaY)) return;
             
-            // 检查是否在边界
+            if (canScrollInsideElement(e.target, direction)) {
+                wheelDelta = 0;
+                return;
+            }
+            
+            currentSectionIndex = getCurrentSectionIndex();
             const scrollTop = window.pageYOffset;
             const windowHeight = window.innerHeight;
             const currentSection = sections[currentSectionIndex];
             const sectionTop = currentSection.offsetTop;
             const sectionBottom = sectionTop + currentSection.offsetHeight;
             
-            const atBottom = direction > 0 && scrollTop + windowHeight >= sectionBottom - 100;
-            const atTop = direction < 0 && scrollTop <= sectionTop + 100;
+            const atBottom = direction > 0 && scrollTop + windowHeight >= sectionBottom - SNAP_EDGE_BUFFER;
+            const atTop = direction < 0 && scrollTop <= sectionTop + SNAP_EDGE_BUFFER;
+
+            if (!atBottom && !atTop) {
+                wheelDelta = 0;
+                return;
+            }
+
+            e.preventDefault();
+            wheelDelta += Math.abs(e.deltaY);
             
             if ((atBottom || atTop) && wheelDelta >= SNAP_THRESHOLD) {
                 const nextIndex = currentSectionIndex + direction;
-                
-                if (nextIndex >= 0 && nextIndex < sections.length) {
-                    isSnapping = true;
-                    sections[nextIndex].scrollIntoView({ behavior: 'smooth' });
-                    currentSectionIndex = nextIndex;
-                    wheelDelta = 0;
-                    
-                    setTimeout(() => { isSnapping = false; }, 600);
-                }
+                scrollToSection(nextIndex);
             }
-        });
+        }, { passive: false });
         
         // 重置滚动累计
         window.addEventListener('scroll', () => {
             clearTimeout(window.scrollResetTimeout);
             window.scrollResetTimeout = setTimeout(() => {
                 wheelDelta = 0;
+                currentSectionIndex = getCurrentSectionIndex();
             }, 100);
         });
     </script>
