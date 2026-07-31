@@ -155,10 +155,10 @@
   ],
   "images": [
     {
-      "uri": "textures/MAT_Puff_baseColor.png"
+      "uri": "textures/MAT_Puff_baseColor.jpg"
     },
     {
-      "uri": "textures/MAT_Floor_baseColor.png"
+      "uri": "textures/MAT_Floor_baseColor.jpg"
     }
   ],
   "materials": [
