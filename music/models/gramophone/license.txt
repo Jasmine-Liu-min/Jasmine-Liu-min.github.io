@@ -1,0 +1,8 @@
+Model Information:
+* title:	Old Gramophone
+* source:	https://sketchfab.com/3d-models/old-gramophone-3d997263b04c4f6ea2b0df05ff6c9bfb
+* author:	akselmot (https://sketchfab.com/akselmot)
+
+Model License:
+* license type:	SKETCHFAB Standard (https://sketchfab.com/licenses)
+* requirements:	Under basic restrictions, use worldwide, on all types of media, commercially or not, and in all types of derivative works
