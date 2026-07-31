@@ -1398,7 +1398,8 @@
         /* 响应式 */
         @media (max-width: 768px) {
             .section { padding: 100px 24px 60px; }
-            .nav-links { display: none; }
+            .nav-links { display: flex; gap: 12px; }
+            .nav-link:not(.nav-link-ext) { display: none; }
             .nav-dots { display: none; }
             .hero h1 { font-size: 48px; }
             .hero-stats { flex-direction: column; gap: 16px; }
@@ -1431,6 +1432,7 @@
                 <a class="nav-link" data-section="5">校园经历</a>
                 <a class="nav-link" data-section="6">技能栈</a>
                 <a class="nav-link" data-section="7">联系我</a>
+                <a class="nav-link nav-link-ext" href="music/">♪ Music</a>
             </div>
         </div>
     </nav>
@@ -2273,7 +2275,10 @@
         function setActiveSection(index) {
             currentSectionIndex = index;
             navDots.forEach((dot, i) => dot.classList.toggle('active', i === index));
-            navLinks.forEach((link, i) => link.classList.toggle('active', i === index));
+            navLinks.forEach(link => {
+                if (link.dataset.section === undefined) return;
+                link.classList.toggle('active', parseInt(link.dataset.section, 10) === index);
+            });
         }
 
         function getCurrentSectionIndex() {
@@ -2337,6 +2342,7 @@
         
         navLinks.forEach(link => {
             link.addEventListener('click', () => {
+                if (link.dataset.section === undefined) return;
                 scrollToSection(parseInt(link.dataset.section, 10));
             });
         });
