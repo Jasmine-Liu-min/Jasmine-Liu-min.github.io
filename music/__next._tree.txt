@@ -1,2 +1,2 @@
 :HL["/music/_next/static/chunks/3-x3q7eo40fsp.css","style"]
-0:{"tree":{"name":"","param":null,"prefetchHints":16,"slots":{"children":{"name":"__PAGE__","param":null,"prefetchHints":0,"slots":null}}},"staleTime":300,"buildId":"wD2ZqT4EHU8ddHT9QlSas"}
+0:{"tree":{"name":"","param":null,"prefetchHints":16,"slots":{"children":{"name":"__PAGE__","param":null,"prefetchHints":0,"slots":null}}},"staleTime":300,"buildId":"nobscImUzaPbPdSbKbUUA"}
