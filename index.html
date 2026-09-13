@@ -1244,7 +1244,83 @@
             border-radius: var(--radius-pill);
             padding: 5px 10px;
         }
-        
+
+        .campus-group + .campus-group {
+            margin-top: 40px;
+        }
+
+        .campus-group-title {
+            font-size: 13px;
+            color: var(--color-faint);
+            letter-spacing: 0.1em;
+            margin-bottom: 16px;
+        }
+
+        .campus-awards {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 14px;
+        }
+
+        .campus-award {
+            font-size: 12px;
+            padding: 4px 10px;
+            border-radius: var(--radius-pill);
+            background: var(--color-accent-light);
+            color: var(--color-accent);
+        }
+
+        .campus-award--top {
+            font-weight: 500;
+        }
+
+        .campus-quote {
+            font-family: var(--font-serif);
+            font-style: italic;
+            font-size: 13px;
+            line-height: 1.7;
+            color: var(--color-faint);
+            border-left: 2px solid var(--color-border);
+            padding-left: 14px;
+            margin-bottom: 4px;
+        }
+
+        .campus-core {
+            margin-top: auto;
+            padding-top: 16px;
+        }
+
+        .campus-core-title {
+            font-size: 12px;
+            letter-spacing: 0.1em;
+            color: var(--color-accent);
+            margin-bottom: 8px;
+        }
+
+        .campus-core-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .campus-core-item {
+            font-size: 12px;
+            font-weight: 500;
+            padding: 5px 10px;
+            border-radius: var(--radius-pill);
+            background: var(--color-accent-light);
+            color: var(--color-accent);
+        }
+
+        .campus-card--competition .campus-skills {
+            margin-top: 14px;
+        }
+
+        .campus-card--wide {
+            grid-column: 1 / -1;
+        }
+
         /* Skills */
         .skills-grid {
             display: grid;
@@ -1536,10 +1612,10 @@
                     <div class="edu-highlight-title">荣誉奖项</div>
                     <div class="edu-highlight-list">
                         <div class="edu-highlight-item">国家奖学金（全校 1%）</div>
-                        <div class="edu-highlight-item">全国大学生市场调查大赛一等奖（省赛队长）</div>
-                        <div class="edu-highlight-item">全国大学生统计建模大赛三等奖（队长）</div>
+                        <div class="edu-highlight-item">全国大学生市场调查与分析大赛 · 国家级一等奖（2024·队长）</div>
+                        <div class="edu-highlight-item">全国大学生统计建模大赛 · 国家级三等奖（2023、2024）</div>
                         <div class="edu-highlight-item">湖南省/湖南师范大学优秀毕业生</div>
-						<div class="edu-highlight-item">全国大学生数学建模竞赛省级三等奖</div>
+						<div class="edu-highlight-item">全国大学生数学建模竞赛 · 省级三等奖（2023）</div>
 						<div class="edu-highlight-item">湖南师范大学优秀毕业论文</div>						
                     </div>
                 </div>
@@ -2131,62 +2207,152 @@
                 <div class="section-label">05</div>
                 <h2 class="section-title">校园经历</h2>
             </div>
-            <div class="campus-grid">
-                <article class="campus-card">
-                    <div class="campus-meta">
-                        <span class="campus-period">2024.06 - 2025.06</span>
-                        <span class="campus-role">信息运营</span>
-                    </div>
-                    <h3 class="campus-title">学院就业助理</h3>
-                    <p class="campus-desc">整合招聘信息并维护毕业生就业去向数据，完成<strong>校园宣讲会、双选会</strong>的信息发布、现场组织和后续统计。</p>
-                    <div class="campus-skills">
-                        <span class="campus-skill">信息整合</span>
-                        <span class="campus-skill">数据跟踪</span>
-                        <span class="campus-skill">活动支持</span>
-                    </div>
-                </article>
+            <div class="campus-group">
+                <div class="campus-group-title">竞赛经历</div>
+                <div class="campus-grid">
+                    <article class="campus-card campus-card--competition">
+                        <div class="campus-meta">
+                            <span class="campus-period">2023 — 2024</span>
+                            <span class="campus-role">队长</span>
+                        </div>
+                        <h3 class="campus-title">正大杯全国大学生市场调查与分析大赛</h3>
+                        <div class="campus-awards">
+                            <span class="campus-award">第十三届 省级三等奖（2023）</span>
+                            <span class="campus-award campus-award--top">第十四届 国家级一等奖（2024）</span>
+                        </div>
+                        <p class="campus-desc">2023 年以组员身份走完从选题到答辩的全流程，获省级三等奖；2024 年再战担任队长，负责<strong>问卷设计、抽样方案设计与实地调研</strong>，并主导全文建模与答辩汇报。基于消费旅程提出 AIPA 模型，设计 800+ 样本分层抽样方案，其中认知部分采用 Logistic 回归识别高潜目标客群，成果被醴陵陶研中心采纳。</p>
+                        <p class="campus-quote">从组员到队长，省三到国一，变的不是名次，而是我开始对结果负责——主动定义问题，而不是等别人分配任务。</p>
+                        <div class="campus-skills">
+                            <span class="campus-skill">问卷设计</span>
+                            <span class="campus-skill">抽样方案</span>
+                            <span class="campus-skill">实地调研</span>
+                            <span class="campus-skill">Logistic 回归</span>
+                            <span class="campus-skill">答辩汇报</span>
+                        </div>
+                        <div class="campus-core">
+                            <div class="campus-core-title">核心能力</div>
+                            <div class="campus-core-list">
+                                <span class="campus-core-item">用户调研全流程</span>
+                                <span class="campus-core-item">抽样方案设计</span>
+                                <span class="campus-core-item">统计建模</span>
+                                <span class="campus-core-item">结论表达与答辩</span>
+                            </div>
+                        </div>
+                    </article>
 
-                <article class="campus-card">
-                    <div class="campus-meta">
-                        <span class="campus-period">2023.09 - 2024.06</span>
-                        <span class="campus-role">活动统筹</span>
-                    </div>
-                    <h3 class="campus-title">党建活动组</h3>
-                    <p class="campus-desc">拆解主题党日、学习研讨、红色观影等活动流程，完成<strong>方案撰写、现场组织与记录整理</strong>，把活动安排落到可执行清单。</p>
-                    <div class="campus-skills">
-                        <span class="campus-skill">流程拆解</span>
-                        <span class="campus-skill">现场协调</span>
-                        <span class="campus-skill">文档沉淀</span>
-                    </div>
-                </article>
+                    <article class="campus-card campus-card--competition">
+                        <div class="campus-meta">
+                            <span class="campus-period">2023 — 2024</span>
+                            <span class="campus-role">队长</span>
+                        </div>
+                        <h3 class="campus-title">全国大学生统计建模大赛</h3>
+                        <div class="campus-awards">
+                            <span class="campus-award">第九届 国家级三等奖（2023）</span>
+                            <span class="campus-award campus-award--top">第十届 国家级三等奖（2024）</span>
+                        </div>
+                        <p class="campus-desc">2023 年以组员身份参赛获国家级三等奖；2024 年担任队长并更换选题方向，基于 <strong>200+ 政策文件</strong> 构建 LDA 主题模型识别储能核心议题，用 Dagum 基尼系数分解剖析区域差异，据此提出因地制宜的政策建议，连续两年获国家级奖项。</p>
+                        <p class="campus-quote">连续两年国三，不是重复，是每次都比上一次更清楚自己在解决什么问题。</p>
+                        <div class="campus-skills">
+                            <span class="campus-skill">LDA 主题模型</span>
+                            <span class="campus-skill">Dagum 基尼系数</span>
+                            <span class="campus-skill">政策文本分析</span>
+                            <span class="campus-skill">团队统筹</span>
+                        </div>
+                        <div class="campus-core">
+                            <div class="campus-core-title">核心能力</div>
+                            <div class="campus-core-list">
+                                <span class="campus-core-item">文本数据挖掘</span>
+                                <span class="campus-core-item">统计建模</span>
+                                <span class="campus-core-item">政策研究</span>
+                                <span class="campus-core-item">团队统筹</span>
+                            </div>
+                        </div>
+                    </article>
 
-                <article class="campus-card">
-                    <div class="campus-meta">
-                        <span class="campus-period">2022.09 - 2023.06</span>
-                        <span class="campus-role">流程规范</span>
-                    </div>
-                    <h3 class="campus-title">院学生社团管理服务中心</h3>
-                    <p class="campus-desc">负责院内社团经费审批、报销审核与财务台账管理，统筹学期社团活动<strong>预算编制与结算</strong>，推动报销流程标准化。</p>
-                    <div class="campus-skills">
-                        <span class="campus-skill">预算管理</span>
-                        <span class="campus-skill">台账维护</span>
-                        <span class="campus-skill">规则意识</span>
-                    </div>
-                </article>
+                    <article class="campus-card campus-card--competition campus-card--wide">
+                        <div class="campus-meta">
+                            <span class="campus-period">2023</span>
+                            <span class="campus-role">队长</span>
+                        </div>
+                        <h3 class="campus-title">全国大学生数学建模竞赛</h3>
+                        <div class="campus-awards">
+                            <span class="campus-award">省级三等奖（2023）</span>
+                        </div>
+                        <p class="campus-desc">担任队长，负责<strong>数据处理与建模支撑</strong>，获省级三等奖。</p>
+                        <div class="campus-skills">
+                            <span class="campus-skill">数据处理</span>
+                            <span class="campus-skill">团队协作</span>
+                        </div>
+                        <div class="campus-core">
+                            <div class="campus-core-title">核心能力</div>
+                            <div class="campus-core-list">
+                                <span class="campus-core-item">数据处理</span>
+                                <span class="campus-core-item">快速建模</span>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+            </div>
 
-                <article class="campus-card">
-                    <div class="campus-meta">
-                        <span class="campus-period">2022.07 - 2022.08</span>
-                        <span class="campus-role">教学设计</span>
-                    </div>
-                    <h3 class="campus-title">三下乡支教</h3>
-                    <p class="campus-desc">担任教学组组长，统筹课程规划、任务分工、备课试讲与教学复盘；独立承担<strong>四、五年级数学与音乐教学</strong>。</p>
-                    <div class="campus-skills">
-                        <span class="campus-skill">团队分工</span>
-                        <span class="campus-skill">课程设计</span>
-                        <span class="campus-skill">复盘迭代</span>
-                    </div>
-                </article>
+            <div class="campus-group">
+                <div class="campus-group-title">任职经历</div>
+                <div class="campus-grid">
+                    <article class="campus-card">
+                        <div class="campus-meta">
+                            <span class="campus-period">2024.06 - 2025.06</span>
+                            <span class="campus-role">信息运营</span>
+                        </div>
+                        <h3 class="campus-title">学院就业助理</h3>
+                        <p class="campus-desc">整合招聘信息并维护毕业生就业去向数据，完成<strong>校园宣讲会、双选会</strong>的信息发布、现场组织和后续统计。</p>
+                        <div class="campus-skills">
+                            <span class="campus-skill">信息整合</span>
+                            <span class="campus-skill">数据跟踪</span>
+                            <span class="campus-skill">活动支持</span>
+                        </div>
+                    </article>
+
+                    <article class="campus-card">
+                        <div class="campus-meta">
+                            <span class="campus-period">2023.09 - 2024.06</span>
+                            <span class="campus-role">活动统筹</span>
+                        </div>
+                        <h3 class="campus-title">党建活动组</h3>
+                        <p class="campus-desc">拆解主题党日、学习研讨、红色观影等活动流程，完成<strong>方案撰写、现场组织与记录整理</strong>，把活动安排落到可执行清单。</p>
+                        <div class="campus-skills">
+                            <span class="campus-skill">流程拆解</span>
+                            <span class="campus-skill">现场协调</span>
+                            <span class="campus-skill">文档沉淀</span>
+                        </div>
+                    </article>
+
+                    <article class="campus-card">
+                        <div class="campus-meta">
+                            <span class="campus-period">2022.09 - 2023.06</span>
+                            <span class="campus-role">流程规范</span>
+                        </div>
+                        <h3 class="campus-title">院学生社团管理服务中心</h3>
+                        <p class="campus-desc">负责院内社团经费审批、报销审核与财务台账管理，统筹学期社团活动<strong>预算编制与结算</strong>，推动报销流程标准化。</p>
+                        <div class="campus-skills">
+                            <span class="campus-skill">预算管理</span>
+                            <span class="campus-skill">台账维护</span>
+                            <span class="campus-skill">规则意识</span>
+                        </div>
+                    </article>
+
+                    <article class="campus-card">
+                        <div class="campus-meta">
+                            <span class="campus-period">2022.07 - 2022.08</span>
+                            <span class="campus-role">教学设计</span>
+                        </div>
+                        <h3 class="campus-title">三下乡支教</h3>
+                        <p class="campus-desc">担任教学组组长，统筹课程规划、任务分工、备课试讲与教学复盘；独立承担<strong>四、五年级数学与音乐教学</strong>。</p>
+                        <div class="campus-skills">
+                            <span class="campus-skill">团队分工</span>
+                            <span class="campus-skill">课程设计</span>
+                            <span class="campus-skill">复盘迭代</span>
+                        </div>
+                    </article>
+                </div>
             </div>
         </div>
     </section>
