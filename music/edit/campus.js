@@ -1,0 +1,10 @@
+/* Scroll-linked chronology; native anchor fallback. */
+(function(){"use strict";function init(){
+ const root=document.querySelector("[data-campus-path]");if(!root||root.dataset.campusReady==="true")return;
+ const links=Array.from(root.querySelectorAll("[data-campus-link]")),stages=Array.from(root.querySelectorAll("[data-campus-stage]")),year=root.querySelector("[data-campus-year]"),count=root.querySelector("[data-campus-count]"),progress=root.querySelector("[data-campus-progress]");
+ if(!links.length||links.length!==stages.length)return;let active=-1,raf=0;const reduced=matchMedia("(prefers-reduced-motion: reduce)");
+ function paint(i){if(i===active)return;active=i;links.forEach((link,j)=>{if(j===i)link.setAttribute("aria-current","location");else link.removeAttribute("aria-current");link.dataset.passed=String(j<i);});if(year){year.textContent=stages[i].dataset.year;if(!reduced.matches&&year.animate)year.animate([{opacity:.35,translate:"0 8px"},{opacity:1,translate:"0 0"}],{duration:320,easing:"cubic-bezier(.22,.8,.22,1)"});}if(count)count.textContent=String(i+1).padStart(2,"0")+" / "+String(stages.length).padStart(2,"0");stages.forEach((stage,j)=>stage.dataset.active=String(i===j));if(progress)progress.style.transform="scaleY("+(i/Math.max(1,stages.length-1))+")";}
+ function sync(){raf=0;const header=document.querySelector(".ed-header"),top=header?.getBoundingClientRect().bottom||60,line=Math.max(top+32,innerHeight*.38);let i=0;stages.forEach((stage,j)=>{if(stage.getBoundingClientRect().top<=line)i=j;});paint(i);}
+ function wake(){if(!raf)raf=requestAnimationFrame(sync);}
+ window.addEventListener("scroll",wake,{passive:true});window.addEventListener("resize",wake);links.forEach((link,i)=>link.addEventListener("click",()=>paint(i)));root.dataset.campusReady="true";wake();
+}if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",init,{once:true});else init();})();
